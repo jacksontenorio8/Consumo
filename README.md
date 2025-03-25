@@ -1,13 +1,12 @@
 # Previsão de Demanda com Azure Machine Learning
 
 ## Visão Geral
-Este projeto tem como objetivo prever a demanda de um produto (exemplo: sorvete) com base na temperatura e outros fatores relevantes. Utiliza-se **Azure Machine Learning**, **MLflow** para rastreamento de experimentos e **Azure Kubernetes Service (AKS)** para deploy do modelo em produção.
+Este projeto tem como objetivo prever a demanda de um produto (exemplo: sorvete) com base na temperatura e outros fatores relevantes. Utiliza-se **Azure Machine Learning** para treinamento e gestão do modelo, **MLflow** para rastreamento de experimentos e **Azure Blob Storage** para armazenar os dados.
 
 ## Tecnologias Utilizadas
 - **Azure Machine Learning** para treinamento e gestão do modelo
 - **MLflow** para rastreamento e gerenciamento de experimentos
 - **Azure Data Factory** para ingestão e processamento de dados
-- **Azure Kubernetes Service (AKS)** para deploy escalável
 - **Azure Blob Storage** para armazenar datasets
 - **Python (Pandas, Scikit-Learn, TensorFlow/PyTorch)**
 
@@ -18,8 +17,9 @@ Este projeto tem como objetivo prever a demanda de um produto (exemplo: sorvete)
 ├── src/
 │   ├── data_processing.py # Processamento de dados
 │   ├── train_model.py     # Treinamento do modelo
-│   ├── deploy_model.py    # Deploy do modelo no Azure
+│   ├── deploy_model.py    # Deploy do modelo
 │   ├── inference.py       # Inferência e previsões
+├── .gitignore             # Arquivos e pastas ignorados pelo Git
 ├── requirements.txt       # Dependências do projeto
 ├── README.md              # Documentação do projeto
 ```
@@ -50,7 +50,7 @@ python src/train_model.py
 Isso irá carregar os dados, treinar um modelo e registrar os experimentos no MLflow.
 
 ## Deploy do Modelo
-Para implantar o modelo no AKS:
+Para implantar o modelo:
 ```bash
 python src/deploy_model.py
 ```
@@ -62,7 +62,7 @@ python src/inference.py --input "dados_de_teste.csv"
 ```
 
 ## Monitoramento e Atualização do Modelo
-1. **Monitoramento:** Use o **Azure Monitor** para acompanhar a precisão do modelo e logs de inferência.
+1. **Monitoramento:** Use **Azure Monitor** para acompanhar a precisão do modelo e logs de inferência.
 2. **Atualização:** Re-treine e re-implante o modelo regularmente conforme novos dados se tornem disponíveis.
 
 ## Contribuição
@@ -73,5 +73,4 @@ Contribuições são bem-vindas! Para sugerir melhorias:
 
 ## Licença
 Este projeto está sob a licença MIT. Consulte o arquivo LICENSE para mais detalhes.
-
 
